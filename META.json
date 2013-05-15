@@ -16,7 +16,7 @@
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "ExtUtils::MakeMaker" : "6.30"
+            "Module::Build::Tiny" : "0.019"
          }
       },
       "develop" : {
@@ -30,7 +30,6 @@
          "requires" : {
             "Carp" : "0",
             "File::Path" : "0",
-            "List::MoreUtils" : "0",
             "Moo" : "0",
             "perl" : "5.006"
          }
@@ -61,6 +60,6 @@
          "web" : "http://github.com/Leont/build-simple"
       }
    },
-   "version" : "0.001"
+   "version" : "0.002"
 }
 

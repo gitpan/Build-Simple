@@ -1,13 +1,12 @@
 package Build::Simple;
 {
-  $Build::Simple::VERSION = '0.001';
+  $Build::Simple::VERSION = '0.002';
 }
 
 use Moo;
 
 use Carp;
 use File::Path;
-use List::MoreUtils;
 
 use Build::Simple::Node;
 
@@ -88,7 +87,7 @@ Build::Simple - A minimalistic dependency system
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 DESCRIPTION
 

@@ -1,6 +1,6 @@
 package Build::Simple::Node;
 {
-  $Build::Simple::Node::VERSION = '0.001';
+  $Build::Simple::Node::VERSION = '0.002';
 }
 
 use Moo;
@@ -29,9 +29,9 @@ has action => (
 
 sub run {
 	my ($self, $name, $graph, $options) = @_;
-	if (!$self->phony) {
+	if (!$self->phony and -e $name) {
 		my @files = grep { !$graph->_is_phony($_) } sort @{ $self->dependencies };
-		return if -e $name and List::MoreUtils::none { not -e $_ or (not -d $_ and -M $name > -M $_) } @files;
+		return if sub { -d $_ or -M $name <= -M $_ or return 0 for @files; 1 }->();
 	}
 	File::Path::mkpath(File::Basename::dirname($name)) if !$self->skip_mkdir;
 	$self->action->(name => $name, dependencies => $self->dependencies, %{$options});
@@ -52,7 +52,7 @@ Build::Simple::Node - A Build::Simple node
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =for Pod::Coverage run
 
